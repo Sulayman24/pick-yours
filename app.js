@@ -1,7 +1,7 @@
 // WhatsApp number: country code + number, without + or spaces.
 const WHATSAPP_NUMBER = "2203782199";
 
-const products = [
+const starterProducts = [
   { id: 1, name: "Everyday Tote", category: "Fashion", price: 18, icon: "👜" },
   { id: 2, name: "Soft Linen Set", category: "Home", price: 24, icon: "🕯️" },
   { id: 3, name: "Glow Essentials", category: "Beauty", price: 15, icon: "✨" },
@@ -11,6 +11,7 @@ const products = [
   { id: 7, name: "Easy Slides", category: "Fashion", price: 16, icon: "🩴" },
   { id: 8, name: "Little Vase", category: "Home", price: 14, icon: "🏺" }
 ];
+let products = [];
 
 let selectedCategory = "All";
 let cart = JSON.parse(localStorage.getItem("pickYoursCart") || "[]");
@@ -28,7 +29,7 @@ function renderProducts() {
   const visible = products.filter(p => selectedCategory === "All" || p.category === selectedCategory);
   productGrid.innerHTML = visible.map(p => `
     <article class="product">
-      <div class="product-image"><span>${p.icon}</span><button class="like ${likes.includes(p.id) ? "liked" : ""}" data-like="${p.id}" type="button" aria-label="Like ${p.name}">${likes.includes(p.id) ? "♥" : "♡"}</button></div>
+      <div class="product-image">${p.image ? `<img src="${p.image}" alt="${p.name}" />` : `<span>${p.icon || "✨"}</span>`}<button class="like ${likes.includes(p.id) ? "liked" : ""}" data-like="${p.id}" type="button" aria-label="Like ${p.name}">${likes.includes(p.id) ? "♥" : "♡"}</button></div>
       <div class="product-info"><span class="product-category">${p.category}</span><h3>${p.name}</h3><div class="product-bottom"><span class="price">${money(p.price)}</span><div class="product-actions"><button class="small-button" data-share="${p.id}" type="button">Share</button><button class="small-button" data-add="${p.id}" type="button">Add</button></div></div></div>
     </article>`).join("");
 }
@@ -55,4 +56,5 @@ document.querySelector("#open-cart").addEventListener("click", openCart); docume
 document.querySelector("#checkout").addEventListener("click", () => { if (!cart.length) return showToast("Add a product before placing an order."); closeCart(); document.querySelector("#order-dialog").showModal(); });
 document.querySelector("#close-dialog").addEventListener("click", () => document.querySelector("#order-dialog").close());
 document.querySelector("#order-form").addEventListener("submit", event => { event.preventDefault(); const data = new FormData(event.target); const items = cart.map(id => products.find(p => p.id === id)); const message = `Hello Pick Yours! I would like to order:%0A%0A${items.map(p => `• ${p.name} — ${money(p.price)}`).join("%0A")}%0A%0ATotal: ${money(items.reduce((sum,p) => sum+p.price, 0))}%0A%0AName: ${data.get("name")}%0ALocation: ${data.get("location")}%0APhone: ${data.get("phone")}`; if (!WHATSAPP_NUMBER) return showToast("Add your WhatsApp number in app.js before publishing."); window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank"); });
-document.querySelector("#year").textContent = new Date().getFullYear(); renderProducts(); renderCart();
+document.querySelector("#year").textContent = new Date().getFullYear();
+fetch("products.json").then(response => { if (!response.ok) throw new Error("Products unavailable"); return response.json(); }).then(data => { products = data; renderProducts(); renderCart(); }).catch(() => { products = starterProducts; renderProducts(); renderCart(); });

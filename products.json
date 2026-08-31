@@ -1,0 +1,10 @@
+[
+  { "id": 1, "name": "Everyday Tote", "category": "Fashion", "price": 18, "icon": "👜", "image": "" },
+  { "id": 2, "name": "Soft Linen Set", "category": "Home", "price": 24, "icon": "🕯️", "image": "" },
+  { "id": 3, "name": "Glow Essentials", "category": "Beauty", "price": 15, "icon": "✨", "image": "" },
+  { "id": 4, "name": "Classic Cap", "category": "Fashion", "price": 12, "icon": "🧢", "image": "" },
+  { "id": 5, "name": "Weekend Mug", "category": "Home", "price": 10, "icon": "☕", "image": "" },
+  { "id": 6, "name": "Daily Care Set", "category": "Beauty", "price": 20, "icon": "🌿", "image": "" },
+  { "id": 7, "name": "Easy Slides", "category": "Fashion", "price": 16, "icon": "🩴", "image": "" },
+  { "id": 8, "name": "Little Vase", "category": "Home", "price": 14, "icon": "🏺", "image": "" }
+]
