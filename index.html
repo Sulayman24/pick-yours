@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Pick Yours — simple things, chosen for you." />
+    <title>Pick Yours | Shop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Pick Yours home">Pick <em>Yours</em></a>
+      <nav aria-label="Main navigation">
+        <a href="#shop">Shop</a>
+        <a href="#about">About</a>
+        <button class="cart-button" id="open-cart" type="button" aria-label="Open your order basket">Basket <span id="cart-count">0</span></button>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">EVERYDAY FINDS</p>
+          <h1>Find something that feels <em>yours.</em></h1>
+          <p class="hero-copy">A small collection of lovely, useful products chosen with care.</p>
+          <a class="button button-dark" href="#shop">Shop the collection</a>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <span class="circle circle-one"></span><span class="circle circle-two"></span>
+          <div class="hero-card">✦<br /><small>Pick what you love</small></div>
+        </div>
+      </section>
+
+      <section class="shop-section" id="shop">
+        <div class="section-heading">
+          <div><p class="eyebrow">THE COLLECTION</p><h2>Pick yours</h2></div>
+          <div class="filters" aria-label="Product categories">
+            <button class="filter active" data-category="All" type="button">All</button>
+            <button class="filter" data-category="Fashion" type="button">Fashion</button>
+            <button class="filter" data-category="Home" type="button">Home</button>
+            <button class="filter" data-category="Beauty" type="button">Beauty</button>
+          </div>
+        </div>
+        <div class="products" id="products" aria-live="polite"></div>
+      </section>
+
+      <section class="about" id="about">
+        <div class="about-mark">P<span>Y</span></div>
+        <div><p class="eyebrow">OUR LITTLE SHOP</p><h2>Simple things, well chosen.</h2><p>Pick Yours is a place to discover products you’ll genuinely enjoy. See something you like? Save it, share it, or send us your order in just a few taps.</p></div>
+      </section>
+    </main>
+
+    <footer><a class="brand" href="#top">Pick <em>Yours</em></a><p>© <span id="year"></span> Pick Yours. Made with care.</p><a href="#shop">Shop</a></footer>
+
+    <aside class="cart-panel" id="cart-panel" aria-label="Your basket" aria-hidden="true">
+      <div class="panel-header"><h2>Your basket</h2><button class="icon-button" id="close-cart" aria-label="Close basket">×</button></div>
+      <div id="cart-items" class="cart-items"></div>
+      <div class="cart-footer"><p>Total <strong id="cart-total">$0.00</strong></p><button class="button button-dark full" id="checkout" type="button">Order on WhatsApp</button></div>
+    </aside>
+    <div class="overlay" id="overlay"></div>
+
+    <dialog id="order-dialog">
+      <button class="dialog-close" id="close-dialog" aria-label="Close">×</button>
+      <p class="eyebrow">ALMOST THERE</p><h2>Where should we send your order?</h2>
+      <form id="order-form">
+        <label>Your name<input name="name" required placeholder="Your full name" /></label>
+        <label>Delivery location<input name="location" required placeholder="Your area / address" /></label>
+        <label>Phone number<input name="phone" required placeholder="Your number" /></label>
+        <button class="button button-dark full" type="submit">Continue to WhatsApp</button>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
