@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "name": "Dress",
+    "category": "Fashion",
+    "price": 1000,
+    "icon": "👗",
+    "image": ""
+  }
+]
